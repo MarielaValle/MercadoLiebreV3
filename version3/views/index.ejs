@@ -16,55 +16,65 @@
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Basado en tu última visita</h2>
-			</div>
-			<!-- Show the "visited" products -->
+            </div>
+            
+            <% productsVisited.forEach(productVisited => { %>
 			<div class="col-12 col-sm-6 col-lg-3">
+                
 				<section class="product-box">
-					<a href="/products/detail/¿?">
+					<a href="/products/detail/<%= productVisited.id %>">
 						<figure class="product-box_image">
-							<img src="/images/products/¿?" alt="imagen de producto">
+							<img src="/images/products/<%= productVisited.image %>" alt="imagen de producto">
 						</figure>
 						<article class="product-box_data">
-							<h2>FINAL PRICE</h2>
-							<span>DISCOUNT % OFF</span>
-							<p>PRODUCT NAME</p>
+							<h2>$<%=formatPrice(productVisited.price,productVisited.discount) %></h2>
+							<span><%= productVisited.discount %>%OFF</span>
+							<p><%= productVisited.name %></p>
 							<i class="fas fa-truck"></i>
 						</article>
 					</a>
-				</section>
+                </section>
+               
 			</div>
-		</div>
-	</div>
-	<!-- /ultima visita -->
+			
+            <% }); %> 
 
-	<!-- Ofertas -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Ofertas</h2>
-			</div>
-			<!-- Show the "in-sale" products -->
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products/detail/¿?">
-						<figure class="product-box_image">
-							<img src="/images/products/¿?" alt="imagen de producto">
-						</figure>
-						<article class="product-box_data">
-							<h2>FINAL PRICE</h2>
-							<span>DISCOUNT % OFF</span>
-							<p>PRODUCT NAME</p>
-							<i class="fas fa-truck"></i>
-						</article>
-					</a>
-				</section>
-			</div>
-		</div>
-	</div>
+                   <!--------------------------Oferta-->                     
+   </div>                                
+            
+   <div class="container products-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="products-title">Productos en oferta</h2>
+        </div>
+
+        <% productsInSale.forEach(productInSale => { %>
+        <div class="col-12 col-sm-6 col-lg-3">
+            
+            <section class="product-box">
+                <a href="/products/detail/<%= productInSale.id %>">
+                    <figure class="product-box_image">
+                        <img src="/images/products/<%= productInSale.image %>" alt="imagen de producto">
+                    </figure>
+                    <article class="product-box_data">
+                        <h2>$<%=formatPrice(productInSale.price,productInSale.discount) %></h2>
+                        <span><%= productInSale.discount %> %OFF</span>
+                        <p><%= productInSale.name %></p>
+                        <i class="fas fa-truck"></i>
+                    </article>
+                </a>
+            </section>
+           
+        </div>
+        <% }); %> 
+          
+
+               <!--------------------------row-->                     
+</div>                                
 	<!-- /Ofertas -->
 
 	<!-- footer -->
-	<%- include('partials/footer') %>
+	<%- include('./partials/footer') %>
 	<!-- /footer -->
 </body>	
 </html>

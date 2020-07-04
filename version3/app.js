@@ -9,8 +9,15 @@ const methodOverride =  require('method-override'); // Pasar poder usar los mét
 // ************ express() - (don't touch) ************
 const app = express();
 
+
+//const publicPath = path.resolve(__dirname, 'public') 
+//app.use(express.static(publicPath));
+
+// no me tomaban los css y con las dos líneas de arriba si, la otra fue que la línea seatada venía con dos puntos barra antes del public y lo saque
 // ************ Middlewares - (don't touch) ************
-app.use(express.static(path.join(__dirname, '../public')));  // Necesario para los archivos estáticos en el folder /public
+
+app.use(express.static(path.join(__dirname, 'public')));  // Necesario para los archivos estáticos en el folder /public
+
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
